@@ -1,4 +1,4 @@
-# Dunamis Loja Virtual
+# Church Loja Virtual
 
 Aplicação de e‑commerce construída com React, TypeScript e Vite. O projeto inclui listagem de produtos, busca, detalhes, carrinho, favoritos, autenticação mock, avaliações e páginas estáticas.
 
