@@ -20,10 +20,10 @@ const categories: Category[] = [
 
 // Mock products
 const products: Product[] = [
-  { id: 1, name: 'Camiseta Jesus Saves', description: '100% algodão, estampa premium', price: 89.9, image: '/img/camiseta-jesus.jpg', category: categories[0], stock: 20, rating: 4.6, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
-  { id: 2, name: 'Tênis Walk in Faith', description: 'Conforto e estilo', price: 249.9, image: '/img/tenis-faith.jpg', category: categories[1], stock: 12, rating: 4.2, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
-  { id: 3, name: 'Copo Hope 500ml', description: 'Copo térmico com mensagem', price: 59.9, image: '/img/copo-hope.jpg', category: categories[2], stock: 30, rating: 4.8, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
-  { id: 4, name: 'Camiseta Oficial', description: 'Oficial Cristão Movement', price: 99.9, image: '/img/camiseta.jpg', category: categories[0], stock: 15, rating: 4.4, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+  { id: 1, name: 'Camiseta Jesus Saves', description: '100% algodão, estampa premium', price: 89.9, image: '/img/camiseta.jpg', category: categories[0], stock: 20, rating: 4.6, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+  { id: 2, name: 'Tênis Walk in Faith', description: 'Conforto e estilo', price: 249.9, image: '/img/nike-Jesus.jpg', category: categories[1], stock: 12, rating: 4.2, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+  { id: 3, name: 'Copo Hope 500ml', description: 'Copo térmico com mensagem', price: 59.9, image: '/img/copo-cruz.jpg', category: categories[2], stock: 30, rating: 4.8, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+  { id: 4, name: 'Camiseta Oficial', description: 'Oficial Cristão Movement', price: 99.9, image: '/img/camiseta-oficial.jpg', category: categories[0], stock: 15, rating: 4.4, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
 ];
 
 const genId = () => Math.random().toString(36).slice(2, 10);

@@ -14,7 +14,6 @@ import UserProfile from '@/pages/UserProfile';
 import OrderHistory from '@/pages/OrderHistory';
 import Favorites from '@/pages/Favorites';
 import Search from '@/pages/Search';
-import CompleteSystemTest from '@/test/complete-system-test';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 const AppRoutes = () => {
@@ -56,9 +55,6 @@ const AppRoutes = () => {
             </ProtectedRoute>
           } />
           <Route path="busca" element={<Search />} />
-          
-          {/* Página de teste completo */}
-          <Route path="test" element={<CompleteSystemTest />} />
           
           {/* Páginas estáticas */}
           <Route path="sobre" element={<About />} />
