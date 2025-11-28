@@ -1,73 +1,122 @@
-# React + TypeScript + Vite
+# Dunamis Loja Virtual
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação de e‑commerce construída com React, TypeScript e Vite. O projeto inclui listagem de produtos, busca, detalhes, carrinho, favoritos, autenticação mock, avaliações e páginas estáticas.
 
-Currently, two official plugins are available:
+## Recursos
+- Listagem de produtos com filtros e busca
+- Favoritos com persistência em `localStorage`
+- Carrinho com quantidade e total
+- Página de detalhes do produto com avaliações
+- Autenticação mock com login/registro e rotas protegidas
+- Páginas estáticas: Sobre e Contato (com formulário)
+- UI responsiva com TailwindCSS e ícones `lucide-react`
+- Roteamento com React Router
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
+- `React` + `TypeScript`
+- `Vite` com HMR (porta padrão `8080`)
+- `React Router`
+- `Zustand` com `persist` para stores
+- `TailwindCSS`
+- `lucide-react` para ícones
+- `date-fns` para formatação de datas
 
-## React Compiler
+## Início Rápido
+1. Instalar dependências
+   - `npm install`
+2. Rodar em desenvolvimento
+   - `npm run dev`
+   - Acesse `http://127.0.0.1:8080/`
+3. Build de produção
+   - `npm run build`
+4. Preview do build
+   - `npm run preview`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Se a porta `8080` estiver em uso, o Vite escolherá outra automaticamente e mostrará o novo endereço no terminal.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Estrutura do Projeto
+```
+src/
+  components/
+    auth/ProtectedRoute.tsx
+    layout/{Header,Footer,Layout}.tsx
+    products/{ProductCard,FavoriteButton,ReviewForm,ReviewsList}.tsx
+    ui/{button,card,input,badge,label,star-rating}.tsx
+  pages/
+    {Home,Products,Search,Favorites,Cart,Checkout,OrderHistory,
+     Login,Register,UserProfile,OrderSuccess,ProductDetail,About,Contact}.tsx
+  routes/routes.tsx
+  services/{api,mock}.ts
+  stores/{useAuthStore,useCartStore,useFavoritesStore,useProductsStore,useReviewsStore}.ts
+  types/index.ts
+  main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Rotas Principais
+- `/` Home
+- `/produtos` Listagem
+- `/produtos/:id` Detalhe de produto
+- `/busca` Busca com filtros
+- `/carrinho` Carrinho
+- `/favorites` Favoritos (protegida)
+- `/auth/login` Login
+- `/auth/register` Registro
+- `/profile` Perfil (protegida)
+- `/orders` Pedidos (protegida)
+- `/checkout` Checkout
+- `/pedido-sucesso/:orderId` Confirmação
+- `/sobre` Sobre Nós
+- `/contato` Contato
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Mock API
+O arquivo `src/services/api.ts` expõe métodos que usam `src/services/mock.ts`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Persistência em `localStorage`:
+- Usuário atual: `mock_auth_user`
+- Token: `auth_token`
+- Favoritos: `favorites`
+- Avaliações: `reviews`
+- Pedidos: `orders`
+
+Categorias e produtos de exemplo estão definidos em `mock.ts`. As imagens usam caminhos como `/img/camiseta-jesus.jpg`. Ajuste a pasta `public/img` conforme necessidade.
+
+## Stores (Zustand)
+- `useAuthStore`: login, registro, logout e `checkAuth`
+- `useCartStore`: itens do carrinho e total
+- `useFavoritesStore`: favoritos por usuário
+- `useProductsStore`: catálogo de produtos
+- `useReviewsStore`: avaliações e média por produto
+
+## Componentes de UI
+- Botões, cards, inputs, badges e ratings em `src/components/ui`
+- `StarRating` oferece seleção e exibição de estrelas, com estado de hover
+
+## Desenvolvimento
+- Aliases configurados em `vite.config.ts` e `tsconfig.json` (prefixo `@`)
+- Tailwind habilitado via plugin
+- HMR ativo para desenvolvimento rápido
+
+## Troubleshooting
+- Invalid Hook Call
+  - Use Hooks apenas em componentes de função ou hooks personalizados.
+  - Evite chamar componentes que usam Hooks como função em módulos de constantes.
+- Duplicatas de React
+  - Verifique `npm ls react` e `npm ls react-dom` para múltiplas versões.
+- Porta em uso
+  - O Vite troca automaticamente e informa o novo endereço.
+- Erros de HMR “Pre-transform”
+  - Verifique imports que apontam para arquivos inexistentes.
+
+## Scripts
+- `dev`: inicia servidor de desenvolvimento
+- `build`: compila para produção
+- `preview`: serve o build gerado
+
+## Contribuição
+- Padronize imports usando aliases `@/...`
+- Mantenha stores coesas e tipadas
+- Evite Hooks fora de componentes
+- Prefira componentes reutilizáveis em `components/ui`
+
+## Licença
+Projeto para fins educacionais/demonstração.
