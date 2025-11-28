@@ -1,23 +1,16 @@
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect } from 'react';
+import AppRoutes from '@/routes/routes.tsx';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { checkAuth } = useAuthStore();
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>count is {count}</Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+  useEffect(() => {
+    // Verificar autenticação ao carregar a aplicação
+    checkAuth();
+  }, [checkAuth]);
+
+  return <AppRoutes />;
 }
 
 export default App;
